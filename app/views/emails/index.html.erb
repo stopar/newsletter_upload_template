@@ -1,0 +1,11 @@
+<h1>Emails sent</h1>
+
+<div id="emails">
+  <%= link_to "New Email", new_email_path %>
+  <% @emails.each do |email| %>
+    <div>
+      <div><%= email.subject %></div>
+      <div><%= email.created_at.to_s(:short) %></div>
+    </div>
+  <% end %>
+</div>
