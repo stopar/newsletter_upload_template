@@ -6,14 +6,18 @@
   </div>
 
   <div id="preview-pane" class="flex-row flex">
-    <div id="emails">
+    <div id="emails" class="flex-none">
       <% @emails.each do |email| %>
-        <div class="border-b pr-8">
-          <div><%= email.subject %></div>
+        <div class="border-b pr-8 hover:bg-sky-100 hover:pl-2">
+          <div><%= link_to email.subject, email_path(email), data: { turbo_frame: "email-details" } %></div>
           <div class="text-sm text-slate-300"><%= email.created_at.to_s(:short) %></div>
         </div>
       <% end %>
     </div>
-    <div id="email-preview" class="flex-auto border p-8 h-screen">THIS IS THE PREVIEW</div>
+    <div id="email-preview" class="flex-auto border p-8 h-[60vh]">
+      <%= turbo_frame_tag "email-details" do %>
+        THIS IS THE PREVIEW
+      <% end %>
+    </div
   </div>
 </div>

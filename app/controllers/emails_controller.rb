@@ -7,6 +7,10 @@ class EmailsController < ApplicationController
     @email = Email.new
   end
 
+  def show
+    @email = Email.find(params[:id])
+  end
+
   def create
     @email = Email.new(email_params)
 
