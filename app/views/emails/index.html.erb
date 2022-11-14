@@ -1,11 +1,19 @@
-<h1>Emails sent</h1>
+<div class="prose flex-col max-w-none flex w-full">
+  <h1>Emails sent</h1>
 
-<div id="emails">
-  <%= link_to "New Email", new_email_path %>
-  <% @emails.each do |email| %>
-    <div>
-      <div><%= email.subject %></div>
-      <div><%= email.created_at.to_s(:short) %></div>
+  <div class="mb-4 self-end">
+    <%= link_to "New Email", new_email_path, class: "no-underline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+  </div>
+
+  <div id="preview-pane" class="flex-row flex">
+    <div id="emails">
+      <% @emails.each do |email| %>
+        <div class="border-b pr-8">
+          <div><%= email.subject %></div>
+          <div class="text-sm text-slate-300"><%= email.created_at.to_s(:short) %></div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    <div id="email-preview" class="flex-auto border p-8 h-screen">THIS IS THE PREVIEW</div>
+  </div>
 </div>
