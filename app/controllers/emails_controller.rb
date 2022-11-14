@@ -11,6 +11,9 @@ class EmailsController < ApplicationController
     @email = Email.new(email_params)
 
     if @email.save
+      Subscriber.all.each do |subscriber|
+        NewsletterMailer.email(subscriber, @email).deliver_now
+      end
       redirect_to emails_path, notice: "Email sent"
     else
       render :new, status: :unprocessable_entity
