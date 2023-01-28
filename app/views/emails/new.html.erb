@@ -1,4 +1,9 @@
 <div class="prose flex-col max-w-none flex w-full">
+	
+  <div class="mb-5">
+  	<%= link_to sanitize("&larr; Back to email sent"), root_path, class: "no-underline text-slate-600 hover:text-blue-400" %>
+  </div>
+
   <h1>New Email</h1>
 
   <%= form_with model: @email do |f| %>

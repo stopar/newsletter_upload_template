@@ -1,6 +1,7 @@
 class EmailsController < ApplicationController
   def index
     @emails = Email.all
+    @template = Template.last
   end
 
   def new
@@ -13,15 +14,20 @@ class EmailsController < ApplicationController
 
   def create
     @email = Email.new(email_params)
-
+    @template = Template.last
+    
     if @email.save
       Subscriber.all.each do |subscriber|
-        NewsletterMailer.email(subscriber, @email).deliver_now
+        NewsletterMailer.email(subscriber, @email, @template).deliver_now
       end
       redirect_to emails_path, notice: "Email sent"
     else
       render :new, status: :unprocessable_entity
     end
+  end
+  
+  def show_template
+    @template = Template.last
   end
 
   private

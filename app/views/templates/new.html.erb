@@ -1,0 +1,20 @@
+<div class="prose flex-col max-w-none flex w-full">
+	
+  <div class="mb-5">
+	 <%= link_to sanitize("&larr; Back to email sent"), root_path, class: "no-underline text-slate-600 hover:text-blue-400" %>
+  </div>
+	
+  <h1>New Template</h1>
+
+  <%= form_with model: @new_template do |f| %>
+    <div class="mb-6">
+      <%= f.label :name, class: "block mb-2 text-sm font-medium text-slate-900" %>
+      <%= f.text_field :name, class: "border border-gray-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
+    </div>
+    <div class="mb-6">
+      <%= f.label :body, class: "block mb-2 text-sm font-medium text-slate-900" %>
+      <%= f.text_area :body, class: "border border-gray-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" %>
+    </div>
+    <div><%= f.submit :send, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %></div>
+  <% end %>
+</div>
