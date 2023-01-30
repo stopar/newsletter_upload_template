@@ -1,30 +1,25 @@
 <div class="prose flex-col max-w-none flex w-full">
   <h1>Emails sent</h1>
+ 
 
-  <div class="flex flex-row-reverse">
-	  <div class="mb-4 self-center">
-	    <%= link_to "New Email", new_email_path, class: "no-underline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
-	  </div>
-	  
-	  <div class="w-8">
-		  
-	  </div>
-	  
-	  <div class="mb-4 flex flex-row">
-		<% if @template.nil? %>
-			<%= link_to "New Template", new_template_path, class: "no-underline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
-		<% else %>
-			<div class="self-center mr-2">
-				<p>All email will be using <%= @template.name %> template</p>
-			</div>
-			<div class="self-center">
-				<%= link_to "New Template", new_template_path, class: "no-underline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
-			</div>
-		<% end %>
-		
-	  </div>
-
+<div class="my-4 flex flex-row-reverse">
+  <div class="self-center">
+    <%= link_to "New Email", new_email_path, class: "no-underline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
   </div>
+	
+ <div class="self-center">
+	<%= link_to "New Template", new_template_path, class: "no-underline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+ </div>
+</div>
+
+
+<% unless @template.nil? %>
+	<div class="self-center">
+ <p>All email will be using <span class="text-orange-600"><%= @template.name %></span> template. 
+	 If you want to select a different template, <%= link_to sanitize("go here &rarr;"), templates_path %></p>
+	</div>
+<% end %>
+
   
 
   <div id="preview-pane" class="flex-row flex">

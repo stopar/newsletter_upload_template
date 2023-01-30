@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_14_070824) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_30_093824) do
   create_table "emails", force: :cascade do |t|
     t.string "subject"
     t.text "body"
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_14_070824) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "selected", default: false
   end
 
 end

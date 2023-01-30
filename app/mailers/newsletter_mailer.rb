@@ -33,7 +33,7 @@ class NewsletterMailer < ApplicationMailer
     # Generating the path
     abs_path = Rails.root.join("app/views/layouts/#{name}.html.erb")
     
-    html = Template.last.body.html_safe 
+    html = Template.selected.last.body.html_safe 
     
     # Writing to the file
     File.write(abs_path, html)

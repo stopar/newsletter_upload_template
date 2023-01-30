@@ -1,7 +1,9 @@
 class EmailsController < ApplicationController
+  before_action :set_template, only: [:index, :create]
+  
   def index
     @emails = Email.all
-    @template = Template.last
+    # @template = Template.selected.last
   end
 
   def new
@@ -14,7 +16,7 @@ class EmailsController < ApplicationController
 
   def create
     @email = Email.new(email_params)
-    @template = Template.last
+    # @template = Template.last
     
     if @email.save
       Subscriber.all.each do |subscriber|
@@ -34,5 +36,9 @@ class EmailsController < ApplicationController
 
     def email_params
       params.require(:email).permit(:subject, :body)
+    end
+    
+    def set_template
+      @template = Template.selected.last
     end
 end
