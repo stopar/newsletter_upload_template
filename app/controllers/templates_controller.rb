@@ -1,5 +1,8 @@
 class TemplatesController < ApplicationController
   
+  # Custom Layout method is located in this Controller
+  include CustomTemplateController
+  
   before_action :previous_selected_template, only: [:create, :select_template]
 
   def new
@@ -28,17 +31,20 @@ class TemplatesController < ApplicationController
     @templates = Template.all
   end
   
+  # If a Template is selected then change the necessary fields and change the layout of the template 
   def select_template
     
     @selected_template = Template.find_by_id(params[:id])
     
     if @template.empty?
       @selected_template.update(selected: true)
+      custom_layout
       redirect_to root_path
     else
       @selected_template.update(selected: true)
       @previous_selected.selected = false  
       previous_template_change_to_unselect(@previous_selected)
+      custom_layout
       redirect_to root_path
     end
 

@@ -15,8 +15,12 @@
 
 <% unless @template.nil? %>
 	<div class="self-center">
- <p>All email will be using <span class="text-orange-600"><%= @template.name %></span> template. 
-	 If you want to select a different template, <%= link_to sanitize("go here &rarr;"), templates_path %></p>
+		<p>All email will be using <span class="text-orange-600"><%= @template.name %></span> template. 
+		If you want to select a different template, <%= link_to sanitize("go here &rarr;"), templates_path %></p>	
+	</div>
+	 <div class="mb-6 rounded-md bg-amber-500 p-3 text-center leading-3">
+		 <small class="text-sm italic text-stone-50">The selected Newsletter template will not be shown in the preview window below. However, the selected Newsletter
+		 		template will be used when you create a <%= link_to "New Email", new_email_path %>.</small>
 	</div>
 <% end %>
 

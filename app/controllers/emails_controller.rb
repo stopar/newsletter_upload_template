@@ -1,5 +1,6 @@
 class EmailsController < ApplicationController
-  before_action :set_template, only: [:index, :create]
+  
+  before_action :set_template, only: [:index, :create, :show]
   
   def index
     @emails = Email.all
@@ -12,11 +13,11 @@ class EmailsController < ApplicationController
 
   def show
     @email = Email.find(params[:id])
+    
   end
 
   def create
     @email = Email.new(email_params)
-    # @template = Template.last
     
     if @email.save
       Subscriber.all.each do |subscriber|
